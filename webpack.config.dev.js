@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/index.js',
@@ -101,6 +102,9 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
+        new DotenvWebpackPlugin({
+            path: './.env'
+        }),
         new HtmlWebpackPlugin({
             inject: true,
             template: './public/index.html',
