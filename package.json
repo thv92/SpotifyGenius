@@ -1,0 +1,46 @@
+{
+  "name": "SpotifyGenius",
+  "version": "1.0.0",
+  "description": "Spotify + Genius Lyrics",
+  "main": "index.js",
+  "repository": "https://github.com/thv92/SpotifyGenius.git",
+  "author": "Thien Vo <vohuythien@utexas.edu>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "webpack --mode development --config webpack.config.dev.js",
+    "start": "webpack-dev-server --open --config webpack.config.dev.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^1.0.0",
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.5.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-svg-loader": "^2.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "yarn": "^1.13.0"
+  },
+  "dependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.1.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  }
+}
