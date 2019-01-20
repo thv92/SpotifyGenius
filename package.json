@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "build": "webpack --mode development --config webpack.config.dev.js",
-    "start": "webpack-dev-server --open --config webpack.config.dev.js"
+    "start": "webpack-dev-server --config webpack.config.dev.js"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
