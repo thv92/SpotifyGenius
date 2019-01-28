@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    cursor: pointer;
+    transition: all ease-out .3s;
+}
+
+.container:hover {
+}
+
+.imageContainer {
+    display: flex;
+    max-width: 45%;
+    justify-content: center;
+}
+
+.textContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding-left: 10px;
+    color: #f8f4f3;
+}
+
+li:not(:first-child) {
+    border-top: 1px solid #f8f4f3;
+}

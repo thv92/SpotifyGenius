@@ -2,8 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
+
 
 module.exports = {
     entry: './src/index.js',
@@ -14,8 +14,9 @@ module.exports = {
         filename: 'bundle.js'
     },
     devServer: {
-        contentBase: './dist',
-        hot: true
+        contentBase: path.join(__dirname, 'dist'),
+        port: 8081,
+        hot: true,
     },
     module: {
         rules: [
@@ -101,7 +102,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
         new DotenvWebpackPlugin({
             path: './.env'
         }),
@@ -109,7 +109,7 @@ module.exports = {
             inject: true,
             template: './public/index.html',
             options: {
-                'title': 'OW APP'
+                'title': 'SpotifyGenius'
             },
             excludeChunks: ['server']
         }),
