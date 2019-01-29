@@ -119,7 +119,7 @@
     display: flex;
     width: 60%;
     height: 90vh;
-    background-color: #c8b7a7;
+    background-color: #4c4345;
     color: #f8f4f3;
     justify-content: center;
     align-items: center;
@@ -139,6 +139,11 @@
 .lyric {
     width: 50vh;
     height: inherit;
+    text-align: center;
+}
+
+.lyric span:last-of-type {
+    padding-bottom: 2em;
 }
 
 @media(min-width: 1300px) {

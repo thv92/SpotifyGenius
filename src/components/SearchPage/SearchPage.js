@@ -110,11 +110,10 @@ class SearchPage extends React.Component {
         if (lyricsData && lyricsData.length !== 0) {
             lyricsToDisplay = lyricsData.map((lyric) => {
                 const formatted = lyric.split('\n').map((line) => {
-                    return <span>{line}<br/></span>
+                    return <span key={uniqueId()}>{line}<br/></span>
                 });
-
                 return (
-                    <div className={styles.lyricsContainer}><p className={styles.lyric}>{formatted}</p></div>
+                    <div key={uniqueId()} className={styles.lyricsContainer}><p className={styles.lyric}>{formatted}</p></div>
                 );
             });
         }
