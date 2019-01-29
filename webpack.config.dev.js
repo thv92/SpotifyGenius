@@ -110,8 +110,7 @@ module.exports = {
             template: './public/index.html',
             options: {
                 'title': 'SpotifyGenius'
-            },
-            excludeChunks: ['server']
+            }
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CaseSensitivePathsPlugin()

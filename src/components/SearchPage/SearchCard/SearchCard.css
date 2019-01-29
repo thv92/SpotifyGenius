@@ -2,9 +2,11 @@
     display: flex;
     cursor: pointer;
     transition: all ease-out .3s;
+    opacity: .8;
 }
 
 .container:hover {
+    opacity: 1;
 }
 
 .imageContainer {
@@ -23,4 +25,8 @@
 
 li:not(:first-child) {
     border-top: 1px solid #f8f4f3;
+}
+
+.active {
+    opacity: 1;
 }

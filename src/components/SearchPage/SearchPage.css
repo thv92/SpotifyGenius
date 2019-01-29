@@ -3,6 +3,7 @@
     flex-flow: nowrap;
 }
 
+
 .left {
     display: flex;
     flex-direction: column;
@@ -10,6 +11,7 @@
     height: 100vh;
     width: 100vh;
     background-color: #231f20;
+    box-shadow: 10px 0px 10px -7px rgba(0,0,0,.30);
 }
 
 .titleContainer {
@@ -17,7 +19,11 @@
     margin-left: auto;
     margin-right: auto;
     color: #f8f4f3;
-    border-bottom: 4px solid #abe1fd
+    border-bottom: 4px solid #abe1fd;
+}
+
+.titleContainer h1 {
+    font-size: 1.5em;
 }
 
 .searchButtonContainer {
@@ -37,6 +43,7 @@
     height: 2em;
     width: 6em;
     cursor: pointer;
+    user-select: none;
     border-radius: 3%;
     opacity: .9;
     transition: all ease-out .1s;
@@ -52,17 +59,96 @@
     overflow: auto;
 }
 
+.searchBarContainer {
+    display: flex;
+    justify-content: center;
+}
+
 .searchBar {
     margin-top: 2em;
+    color: #f8f4f3;
     height: 3em;
-    width: 100%;
+    width: 80%;
     padding: 0 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(248, 244, 243, .25);
+    background-color: #231f20;
+    transition: .04s ease-in all;
 }
+
+.searchBar:focus {
+    border-bottom: 1px solid #f8f4f3;
+}
+
+/* .searchLabelClicked {
+    z-index: 1;
+}
+
+.searchLabel {
+    position: absolute;
+    margin-top: 2em;
+    height: 1.48em;
+    color: #f8f4f3;
+    z-index: 2;
+    opacity: .6;
+    user-select: none;
+    cursor: text;
+}
+
+.searchLabel:after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    height: 2px;
+    width: 10px;
+    left: 45%;
+    background-color: #f8f4f3;
+    transition: .02s ease all;
+} */
 
 .right {
     display: flex;
     flex-flow: nowrap;
-    max-width: 65%;
-    width: 100vh;
-    border: 3px solid green;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.lyricsSection {
+    display: flex;
+    width: 60%;
+    height: 90vh;
+    background-color: #c8b7a7;
+    color: #f8f4f3;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.30);
+    border-radius: .5%;
+    overflow: scroll;
+}
+
+.lyricsContainer {
+    display: flex;
+    height: 85vh;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+.lyric {
+    width: 50vh;
+    height: inherit;
+}
+
+@media(min-width: 1300px) {
+    .titleContainer h1 {
+        font-size: 2.1em;
+    }
+}
+
+@media(min-width: 1400px) {
+    .titleContainer h1 {
+        font-size: 2.3em;
+    }
 }

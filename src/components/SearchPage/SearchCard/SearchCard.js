@@ -7,8 +7,14 @@ export default (props) => {
     const artists = props.artists;
     const name = props.name;
     const albumArt = props.album_art;
+
+    let s = [styles.container];
+    if (props.selected) {
+        s.push(styles.active);
+    }
+
     return (
-        <li key={uniqueId()} className={styles.container} onClick={() => props.onClick(name, artists[0])}>
+        <li key={uniqueId()} className={s.join(', ')} onClick={() => props.onClick(name, artists[0])}>
             <div className={styles.imageContainer}>
                 <img src={albumArt.url} />
             </div>
