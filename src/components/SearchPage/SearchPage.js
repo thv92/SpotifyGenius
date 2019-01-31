@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './SearchPage.css';
 import QueryString from 'query-string';
+import SearchCards from './SearchCards/SearchCards';
+import Lyrics from './Lyrics/Lyrics';
 import {uniqueId} from 'lodash';
-import SearchCard from './SearchCard/SearchCard';
-import Util from 'util';
 
 class SearchPage extends React.Component {
     constructor(props) {
@@ -97,25 +97,12 @@ class SearchPage extends React.Component {
         const songData = this.state.songData;
         const lyricsData = this.state.lyricsData;
         let songsToDisplay = null;
-        if (songData) {
-            songsToDisplay = songData.map((song) => {
-                //TODO: onclick store primary artist
-                return (
-                    <SearchCard key={uniqueId()} onClick={() => this.onSearchCardClicked(song.name, song.artists[0])} {...song}/>
-                );
-            });
-        }
-
         let lyricsToDisplay = null;
+        if (songData) {
+            songsToDisplay = <SearchCards songs={songData} onClick={this.onSearchCardClicked} />;
+        }
         if (lyricsData && lyricsData.length !== 0) {
-            lyricsToDisplay = lyricsData.map((lyric) => {
-                const formatted = lyric.split('\n').map((line) => {
-                    return <span key={uniqueId()}>{line}<br/></span>
-                });
-                return (
-                    <div key={uniqueId()} className={styles.lyricsContainer}><p className={styles.lyric}>{formatted}</p></div>
-                );
-            });
+            lyricsToDisplay = <Lyrics lyrics={lyricsData}/>
         }
 
         return (
@@ -130,15 +117,10 @@ class SearchPage extends React.Component {
                     <div className={styles.searchButtonContainer}>
                         <div className={styles.searchButton} onClick={this.onSearchButtonClicked}>Search</div>
                     </div>
-                    <div className={styles.results}>{songsToDisplay}</div>
+                    {songsToDisplay}
                 </div>
                 <div className={styles.right}>
-                    {
-                        lyricsToDisplay ? 
-                                <div className={styles.lyricsSection}>
-                                    {lyricsToDisplay}
-                                </div> : null 
-                    }
+                    {lyricsToDisplay}
                 </div>
             </div>
         );

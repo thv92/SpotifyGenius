@@ -55,10 +55,6 @@
     opacity: 1;
 }
 
-.results {
-    overflow: auto;
-}
-
 .searchBarContainer {
     display: flex;
     justify-content: center;
@@ -113,37 +109,6 @@
     justify-content: center;
     align-items: center;
     flex: 1;
-}
-
-.lyricsSection {
-    display: flex;
-    width: 60%;
-    height: 90vh;
-    background-color: #4c4345;
-    color: #f8f4f3;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 10px -5px rgba(0,0,0,.30);
-    border-radius: .5%;
-    overflow: scroll;
-}
-
-.lyricsContainer {
-    display: flex;
-    height: 85vh;
-    width: 70%;
-    justify-content: center;
-    align-items: center;
-}
-
-.lyric {
-    width: 50vh;
-    height: inherit;
-    text-align: center;
-}
-
-.lyric span:last-of-type {
-    padding-bottom: 2em;
 }
 
 @media(min-width: 1300px) {
