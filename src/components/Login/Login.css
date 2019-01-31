@@ -1,0 +1,40 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #e8e7e5;
+    height: 25%;
+    width: 40%;
+    margin: auto auto;
+    opacity: 1;
+    border-radius: 2%;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0 10px 10px -10px rgba(0,0,0,.21), 10px 0 10px -10px rgba(0,0,0,.21);
+}
+
+.loginContainer h1 {
+    text-decoration: none;
+    color: #313131;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 30%;
+    height: 17%;
+    background-color: #60c6fb;
+    border-radius: 2%;
+}
+
+.loginButton {
+    display: flex;
+    font-size: 1em;
+    color: #e7e7e7;
+    transition: all .2s ease-in;
+}
+
+.buttonContainer:hover {
+    transform: scale(1.02, 1.02);
+}

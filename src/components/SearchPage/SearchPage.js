@@ -23,7 +23,7 @@ class SearchPage extends React.Component {
 
     onUserInput(e) {
         let value = e.target.value;
-        this.setState((state, props) => {
+        this.setState(() => {
             return {
                 searchTerm: value
             };

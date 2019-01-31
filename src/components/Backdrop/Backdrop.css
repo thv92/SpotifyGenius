@@ -1,0 +1,25 @@
+.background {
+    position: absolute;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    opacity: .3;
+    z-index: 888;
+}
+
+.modal {
+    display: flex;
+    position: absolute;
+    width: 65%;
+    height: 85%;
+    z-index: 999;
+}
+
+.container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
