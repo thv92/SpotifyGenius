@@ -4,7 +4,7 @@ import styles from './Login.css';
 const login = (props) => {
     return (
         <div className={styles.loginContainer}>
-            <h1>PLEASE LOGIN</h1>
+            <h3>PLEASE LOGIN TO SPOTIFY</h3>
             <a href={process.env.API + '/login'} className={styles.buttonContainer}>
                 <div className={styles.loginButton}>Login</div>
             </a>

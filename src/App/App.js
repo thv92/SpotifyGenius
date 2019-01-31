@@ -14,10 +14,10 @@ class App extends React.Component {
         };
     }
 
+    // { !this.state.login ? <Backdrop><Login /></Backdrop> : null }
     render() {
         return (
             <main>
-                { !this.state.login ? <Backdrop><Login /></Backdrop> : null }
                 <SearchPage />
             </main>
         );

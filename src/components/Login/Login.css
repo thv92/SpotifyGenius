@@ -12,7 +12,7 @@
     box-shadow: 0 10px 10px -10px rgba(0,0,0,.21), 10px 0 10px -10px rgba(0,0,0,.21);
 }
 
-.loginContainer h1 {
+.loginContainer h3 {
     text-decoration: none;
     color: #313131;
 }
@@ -25,6 +25,7 @@
     width: 30%;
     height: 17%;
     background-color: #60c6fb;
+    opacity: .9;
     border-radius: 2%;
 }
 
@@ -37,4 +38,5 @@
 
 .buttonContainer:hover {
     transform: scale(1.02, 1.02);
+    opacity: 1;
 }
