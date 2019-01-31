@@ -16,9 +16,6 @@ const lyrics = (props) => {
             {lyricsToDisplay}
         </div>
     );
-
-
 }
 
-
-export default lyrics
+export default lyrics;

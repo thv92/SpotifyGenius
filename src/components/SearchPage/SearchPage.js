@@ -19,7 +19,6 @@ class SearchPage extends React.Component {
         this.onEnterPressed = this.onEnterPressed.bind(this);
         this.onSearchButtonClicked = this.onSearchButtonClicked.bind(this);
         this.onSearchCardClicked = this.onSearchCardClicked.bind(this);
-
     }
 
     onUserInput(e) {
@@ -73,8 +72,6 @@ class SearchPage extends React.Component {
                 };
             });
         })
-
-
     }
 
     onEnterPressed(e) {
