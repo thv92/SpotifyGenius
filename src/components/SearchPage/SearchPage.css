@@ -50,14 +50,14 @@
 
 }
 .searchButton:hover {
-    width: 6.10em;
-    height: 2.05em;
+    transform: scale(1.07, 1.05);
     opacity: 1;
 }
 
 .searchBarContainer {
     display: flex;
     justify-content: center;
+    height: 5%;
 }
 
 .searchBar {
