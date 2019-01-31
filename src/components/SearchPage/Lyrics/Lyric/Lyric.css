@@ -1,0 +1,17 @@
+.lyricContainer {
+    display: flex;
+    height: 85vh;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+.lyric {
+    width: 50vh;
+    height: inherit;
+    text-align: center;
+}
+
+.lyric span:last-of-type {
+    padding-bottom: 2em;
+}

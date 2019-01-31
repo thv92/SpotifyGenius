@@ -1,0 +1,12 @@
+.lyricsSection {
+    display: flex;
+    width: 60%;
+    height: 90vh;
+    background-color: #4c4345;
+    color: #f8f4f3;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.30);
+    border-radius: .5%;
+    overflow: scroll;
+}
