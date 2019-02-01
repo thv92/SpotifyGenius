@@ -18,7 +18,8 @@ module.exports = {
         https: process.env.HTTPS,
         contentBase: ['./public/', './src/'],
         historyApiFallback: true,
-        inline: true
+        inline: true,
+        disableHostCheck: true
     },
     module: {
         rules: [
