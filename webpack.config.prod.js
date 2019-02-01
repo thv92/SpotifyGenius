@@ -13,14 +13,6 @@ module.exports = {
         filename: 'bundle.js'
     },
     devtool: 'source-map',
-    optimization: {
-        minimizer: [
-            new uglifyJsPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true
-            })]
-    },
     module: {
         rules: [
             {
