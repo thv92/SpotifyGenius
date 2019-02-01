@@ -15,8 +15,10 @@ module.exports = {
         hot: true,
         port: process.env.PORT,
         host: process.env.HOST || '0.0.0.0',
-        protocol: process.env.HTTPS === 'true' ? 'https' : 'http'
-
+        https: process.env.HTTPS === 'true' ? 'https' : 'http',
+        contentBase: ['./public/', './src/'],
+        historyApiFallback: true,
+        inline: true
     },
     module: {
         rules: [
