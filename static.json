@@ -1,0 +1,12 @@
+{
+    "proxies": {
+        "/api/": {
+            "origin": "${API_URL}"
+        }
+    },
+    "headers": {
+        "/**": {
+          "Access-Control-Allow-Origin": "*"
+        }
+      }
+}
