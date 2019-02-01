@@ -16,7 +16,13 @@ module.exports = {
         host: process.env.HOST || '0.0.0.0',
         https: process.env.HTTPS,
         historyApiFallback: true,
-        disableHostCheck: true
+        disableHostCheck: true,
+        proxy: {
+            '/api': {
+                target: 'https://spotify-genius-backend.herokuapp.com/',
+                pathRewrite: {'^/api': ''}
+            }
+        }
     },
     module: {
         rules: [
