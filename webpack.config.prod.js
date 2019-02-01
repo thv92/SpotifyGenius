@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 
 module.exports = {
     entry: './src/index.js',
@@ -15,7 +16,7 @@ module.exports = {
         hot: true,
         port: process.env.PORT,
         host: process.env.HOST || '0.0.0.0',
-        https: process.env.HTTPS === 'true' ? 'https' : 'http',
+        https: protocol,
         contentBase: ['./public/', './src/'],
         historyApiFallback: true,
         inline: true
