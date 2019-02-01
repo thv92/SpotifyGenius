@@ -14,7 +14,9 @@ module.exports = {
     devServer: {
         hot: true,
         port: process.env.PORT,
-        host: process.env.HOST
+        host: process.env.HOST || '0.0.0.0',
+        protocol: process.env.HTTPS === 'true' ? 'https' : 'http'
+
     },
     module: {
         rules: [
