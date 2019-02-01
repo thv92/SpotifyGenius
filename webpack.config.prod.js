@@ -13,7 +13,8 @@ module.exports = {
     devtool: 'source-map',
     devServer: {
         hot: true,
-        port: process.env.PORT
+        port: process.env.PORT,
+        host: process.env.HOST
     },
     module: {
         rules: [
