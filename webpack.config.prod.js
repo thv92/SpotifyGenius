@@ -12,12 +12,10 @@ module.exports = {
     },
     devtool: 'source-map',
     devServer: {
-        hot: true,
         port: process.env.PORT,
         host: process.env.HOST || '0.0.0.0',
         https: process.env.HTTPS,
         historyApiFallback: true,
-        inline: true,
         disableHostCheck: true
     },
     module: {
