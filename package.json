@@ -47,7 +47,6 @@
       "@babel/preset-react"
     ]
   },
-  "proxy": "http://localhost:9090",
   "engines": {
     "node": "11.4.0",
     "yarn": "1.13.0"
