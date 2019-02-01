@@ -16,7 +16,6 @@ module.exports = {
         port: process.env.PORT,
         host: process.env.HOST || '0.0.0.0',
         https: process.env.HTTPS,
-        contentBase: ['./dist/'],
         historyApiFallback: true,
         inline: true,
         disableHostCheck: true
