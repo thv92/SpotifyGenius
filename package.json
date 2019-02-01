@@ -10,7 +10,7 @@
   "scripts": {
     "buildDev": "rm -rf ./dist && webpack --mode development --config webpack.config.dev.js",
     "startServerDev": "webpack-dev-server --config webpack.config.dev.js",
-    "startDev": "yarn build && yarn startServer",
+    "startDev": "yarn buildDev && yarn startServerDev",
     "build": "rm -rf ./dist && webpack --mode production --config webpack.config.prod.js",
     "startServer": "webpack-dev-server --config webpack.config.prod.js",
     "start": "yarn build && yarn startServer"

@@ -11,6 +11,10 @@ module.exports = {
         filename: 'bundle.js'
     },
     devtool: 'source-map',
+    devServer: {
+        hot: true,
+        port: process.env.PORT
+    },
     module: {
         rules: [
             {
