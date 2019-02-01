@@ -34,8 +34,8 @@ class SearchPage extends React.Component {
     }
 
     getSongData() {
-        console.log('GETTING SONGS FROM: ' + process.env.API);
-        fetch('/api/search/song?' + QueryString.stringify({
+        console.log('GETTING SONGS FROM: ' + process.env.API_URL);
+        fetch(process.env.API_URL + '/search/song?' + QueryString.stringify({
             q: this.state.searchTerm
         }, {
             credentials: 'include'
@@ -68,7 +68,7 @@ class SearchPage extends React.Component {
     }
 
     getLyrics(name, artist) {
-        fetch('/api/search/lyric?' + QueryString.stringify({
+        fetch(process.env.API_URL + '/search/lyric?' + QueryString.stringify({
             name,
             artist
         }))
