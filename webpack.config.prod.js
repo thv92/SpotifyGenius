@@ -2,21 +2,24 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const DotenvWebpackPlugin = require('dotenv-webpack');
-
+const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
-    mode: 'development',
+    mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'bundle.js'
     },
-    devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        port: 8081,
-        hot: true,
+    devtool: 'source-map',
+    optimization: {
+        minimizer: [
+            new uglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true
+            })]
     },
     module: {
         rules: [
@@ -57,7 +60,8 @@ module.exports = {
                                             autoprefixer: {
                                                 flexbox: 'no-2009'
                                             }
-                                        })
+                                        }),
+                                        require('cssnano')()
                                     ]
                                 }
                             }
@@ -84,9 +88,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new DotenvWebpackPlugin({
-            path: './.env'
-        }),
         new HtmlWebpackPlugin({
             inject: true,
             template: './public/index.html',
@@ -94,7 +95,6 @@ module.exports = {
                 'title': 'SpotifyGenius'
             }
         }),
-        new webpack.HotModuleReplacementPlugin(),
         new CaseSensitivePathsPlugin()
     ]
 };

@@ -8,8 +8,11 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "rm -rf ./dist && webpack --mode development --config webpack.config.dev.js",
-    "startServer": "webpack-dev-server --config webpack.config.dev.js",
+    "buildDev": "rm -rf ./dist && webpack --mode development --config webpack.config.dev.js",
+    "startServerDev": "webpack-dev-server --config webpack.config.dev.js",
+    "startDev": "yarn build && yarn startServer",
+    "build": "rm -rf ./dist && webpack --mode production --config webpack.config.prod.js",
+    "startServer": "webpack-dev-server --config webpack.config.prod.js",
     "start": "yarn build && yarn startServer"
   },
   "devDependencies": {
@@ -44,5 +47,9 @@
       "@babel/preset-react"
     ]
   },
-  "proxy": "http://localhost:9090"
+  "proxy": "http://localhost:9090",
+  "engines": {
+    "node": "11.4.0",
+    "yarn": "1.13.0"
+  }
 }
