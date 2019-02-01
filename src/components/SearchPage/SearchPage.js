@@ -34,6 +34,7 @@ class SearchPage extends React.Component {
     }
 
     getSongData() {
+        console.log('GETTING SONGS FROM: ' + process.env.API);
         fetch(process.env.API + '/search/song?' + QueryString.stringify({
             q: this.state.searchTerm
         }, {
