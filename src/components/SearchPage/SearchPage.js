@@ -3,7 +3,8 @@ import styles from './SearchPage.css';
 import QueryString from 'query-string';
 import SearchCards from './SearchCards/SearchCards';
 import Lyrics from './Lyrics/Lyrics';
-import {uniqueId} from 'lodash';
+import Backdrop from '../Backdrop/Backdrop';
+import Login from '../Login/Login';
 
 class SearchPage extends React.Component {
     constructor(props) {
@@ -11,7 +12,8 @@ class SearchPage extends React.Component {
         this.state = {
             searchTerm: "",
             songData: null,
-            lyricsData: null
+            lyricsData: null,
+            loginRequired: false
         };
         this.onUserInput = this.onUserInput.bind(this);
         this.getSongData = this.getSongData.bind(this);
@@ -19,6 +21,7 @@ class SearchPage extends React.Component {
         this.onEnterPressed = this.onEnterPressed.bind(this);
         this.onSearchButtonClicked = this.onSearchButtonClicked.bind(this);
         this.onSearchCardClicked = this.onSearchCardClicked.bind(this);
+        this.onLoginClicked = this.onLoginClicked.bind(this);
     }
 
     onUserInput(e) {
@@ -33,14 +36,26 @@ class SearchPage extends React.Component {
     getSongData() {
         fetch(process.env.API + '/search/song?' + QueryString.stringify({
             q: this.state.searchTerm
+        }, {
+            credentials: 'include'
         }))
         .then(response => response.json())
         .then(json => {
-            this.setState(() => {
-                return {
-                    songData: json.results
+            if (json.results) {
+                this.setState(() => {
+                    return {
+                        songData: json.results
+                    }
+                });
+            } else {
+                if (json.error && json.status === 401) {
+                    this.setState(() => {
+                        return {
+                            loginRequired: true
+                        };
+                    });
                 }
-            });
+            }
         })
         .catch((err) => {
             this.setState(() => {
@@ -72,6 +87,14 @@ class SearchPage extends React.Component {
                 };
             });
         })
+    }
+
+    onLoginClicked() {
+        this.setState(() => {
+            return {
+                loginRequired: false
+            };
+        });
     }
 
     onEnterPressed(e) {
@@ -108,12 +131,18 @@ class SearchPage extends React.Component {
                     <div className={styles.titleContainer}>
                         <h1>Spotify Genius</h1>
                     </div>
-                    <div className={styles.searchBarContainer}>
-                        <input className={styles.searchBar} type="text" value={this.state.searchTerm} onChange={(e) => {this.onUserInput(e)}} onKeyDown={this.onEnterPressed} placeholder="Search Song Here..." />
-                    </div>
-                    <div className={styles.searchButtonContainer}>
-                        <div className={styles.searchButton} onClick={this.onSearchButtonClicked}>Search</div>
-                    </div>
+                    
+                    { this.state.loginRequired ? <Backdrop><Login onClick={this.onLoginClicked}/></Backdrop> :
+                    (
+                    <React.Fragment>
+                        <div className={styles.searchBarContainer}>
+                            <input className={styles.searchBar} type="text" value={this.state.searchTerm} onChange={(e) => {this.onUserInput(e)}} onKeyDown={this.onEnterPressed} placeholder="Search Song Here..." />
+                        </div>
+                        <div className={styles.searchButtonContainer}>
+                            <div className={styles.searchButton} onClick={this.onSearchButtonClicked}>Search</div>
+                        </div>
+                    </React.Fragment>
+                    )}
                     {songsToDisplay}
                 </div>
                 <div className={styles.right}>

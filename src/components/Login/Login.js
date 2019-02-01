@@ -6,7 +6,7 @@ const login = (props) => {
         <div className={styles.loginContainer}>
             <h3>PLEASE LOGIN TO SPOTIFY</h3>
             <a href={process.env.API + '/login'} className={styles.buttonContainer}>
-                <div className={styles.loginButton}>Login</div>
+                <div className={styles.loginButton} onClick={props.onClick}>Login</div>
             </a>
         </div>
     );
