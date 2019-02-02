@@ -6,7 +6,10 @@ const DotenvWebpackPlugin = require('dotenv-webpack');
 
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        main: [
+            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000', './src/index.js'
+        ]},
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -14,9 +17,17 @@ module.exports = {
         filename: 'bundle.js'
     },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        port: 8081,
-        hot: true,
+        port: process.env.PORT,
+        host: process.env.HOST || '0.0.0.0',
+        https: process.env.HTTPS,
+        historyApiFallback: true,
+        disableHostCheck: true,
+        proxy: {
+            '/api': {
+                target: 'https://spotify-genius-backend.herokuapp.com/',
+                pathRewrite: {'^/api': ''}
+            }
+        }
     },
     module: {
         rules: [
@@ -25,7 +36,7 @@ module.exports = {
                     {
                         test: /\.js$/,
                         loader: 'babel-loader',
-                        exclude: /node_modules/
+                        exclude: [/node_modules/, /server/]
 
                     },
                     {
@@ -92,7 +103,8 @@ module.exports = {
             template: './public/index.html',
             options: {
                 'title': 'SpotifyGenius'
-            }
+            },
+            excludeChunks: ['server']
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CaseSensitivePathsPlugin()
