@@ -30,6 +30,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 1.5em;
+    min-height: 5%;
 }
 
 .searchButton {
@@ -37,17 +38,16 @@
     align-self: center;
     justify-content: center;
     align-items: center;
-    margin-top: 1em;
     background-color: #abe1fd;
     color: #f8f4f3;
     height: 2em;
     width: 6em;
+    margin-top: -2em;
     cursor: pointer;
     user-select: none;
     border-radius: 3%;
     opacity: .9;
     transition: all ease-out .1s;
-
 }
 .searchButton:hover {
     transform: scale(1.07, 1.05);
@@ -57,7 +57,7 @@
 .searchBarContainer {
     display: flex;
     justify-content: center;
-    height: 5%;
+    min-height: 8%;
 }
 
 .searchBar {
