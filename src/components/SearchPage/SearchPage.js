@@ -34,13 +34,12 @@ class SearchPage extends React.Component {
     }
 
     getSongData() {
-        console.log('GETTING SONGS FROM: ' + process.env.API_URL);
-        fetch(process.env.API_URL + '/search/song?' + QueryString.stringify({
+        fetch('/api/search/song?' + QueryString.stringify({
             q: this.state.searchTerm
-        }, {
-            credentials: 'include'
         }))
-        .then(response => response.json())
+        .then(response => {
+            return response.json();
+        })
         .then(json => {
             if (json.results) {
                 this.setState(() => {
@@ -68,7 +67,7 @@ class SearchPage extends React.Component {
     }
 
     getLyrics(name, artist) {
-        fetch(process.env.API_URL + '/search/lyric?' + QueryString.stringify({
+        fetch('/api/search/lyric?' + QueryString.stringify({
             name,
             artist
         }))

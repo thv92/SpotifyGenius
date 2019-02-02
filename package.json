@@ -9,10 +9,11 @@
   "private": false,
   "scripts": {
     "buildDev": "rm -rf ./dist && webpack --mode development --config webpack.config.dev.js",
-    "startServerDev": "webpack-dev-server --config webpack.config.dev.js",
-    "startDev": "yarn buildDev && yarn startServerDev",
-    "build": "rm -rf ./dist && webpack --mode production --config webpack.config.prod.js",
-    "startServer": "webpack-dev-server --config webpack.config.prod.js",
+    "buildDevWatch": "rm -rf ./dist && webpack --watch --mode development --config webpack.config.dev.js",
+    "startServerWDS": "webpack-dev-server --config webpack.config.dev.js",
+    "startServerDev": "nodemon ./src/server/server.dev.js",
+    "build": "rm -rf ./dist && webpack --env.API_URL=$API_URL --mode production --config webpack.config.prod.js",
+    "startServer": "nodemon ./src/server/server.prod.js",
     "start": "yarn build && yarn startServer"
   },
   "dependencies": {
@@ -21,11 +22,14 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
+    "cors": "^2.8.5",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
     "dotenv-webpack": "^1.7.0",
+    "express": "^4.16.4",
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "http-proxy-middleware": "^0.19.1",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
@@ -51,5 +55,9 @@
     "node": "11.4.0",
     "yarn": "1.13.0"
   },
-  "proxy" : "https://spotify-genius-backend.herokuapp.com/"
+  "devDependencies": {
+    "dotenv": "^6.2.0",
+    "nodemon": "^1.18.9",
+    "webpack-hot-middleware": "^2.24.3"
+  }
 }

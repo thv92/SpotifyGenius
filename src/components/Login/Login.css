@@ -27,6 +27,7 @@
     background-color: #60c6fb;
     opacity: .9;
     border-radius: 2%;
+    cursor: pointer;
 }
 
 .loginButton {
