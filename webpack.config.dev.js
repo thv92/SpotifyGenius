@@ -25,7 +25,9 @@ module.exports = {
         proxy: {
             '/api': {
                 target: 'https://spotify-genius-backend.herokuapp.com/',
-                pathRewrite: {'^/api': ''}
+                pathRewrite: {'^/api': ''},
+                changeOrigin: true,
+                secure: false,
             }
         }
     },

@@ -140,9 +140,9 @@ class SearchPage extends React.Component {
                         <div className={styles.searchButtonContainer}>
                             <div className={styles.searchButton} onClick={this.onSearchButtonClicked}>Search</div>
                         </div>
+                        {songsToDisplay}
                     </React.Fragment>
                     )}
-                    {songsToDisplay}
                 </div>
                 <div className={styles.right}>
                     {lyricsToDisplay}

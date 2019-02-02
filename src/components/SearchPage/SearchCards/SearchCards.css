@@ -1,3 +1,4 @@
 .songList {
-    overflow: auto;
+    overflow: scroll;
+    height: 75%;
 }
