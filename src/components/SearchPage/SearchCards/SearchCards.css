@@ -1,4 +1,21 @@
 .songList {
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     height: 75%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #231f20;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

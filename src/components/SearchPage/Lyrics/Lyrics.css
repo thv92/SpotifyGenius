@@ -8,10 +8,10 @@
     align-items: center;
     box-shadow: 0 10px 10px -5px rgba(0,0,0,.30);
     border-radius: .5%;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     animation: slide-up ease .4s;
 }
-
 
 @keyframes slide-up {
     0% {
@@ -23,4 +23,20 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #4c4345;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
