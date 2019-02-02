@@ -3,19 +3,37 @@ import styles from './Lyrics.css';
 import {uniqueId} from 'lodash';
 import Lyric from './Lyric/Lyric';
 
-const lyrics = (props) => {
-    //props: lyrics
-    const lyricsToDisplay = props.lyrics.map((lyric) => {
+class Lyrics extends React.Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.lyrics.length !== this.props.lyrics.length) {
+            return true;
+        } else {
+            this.props.lyrics.forEach((lyric, index) => {
+                const nextLyric = nextProps.lyrics[index];
+                if (nextLyric !== lyric) {
+                    return true;
+                }
+            });
+        }
+        return false;
+    }
+    
+    render() {
+        //props: lyrics
+        const lyricsToDisplay = this.props.lyrics.map((lyric) => {
+            return (
+                <Lyric key={uniqueId()} lyric={lyric}/>
+            );
+        });
+    
         return (
-            <Lyric key={uniqueId()} lyric={lyric}/>
+            <div className={styles.lyricsSection}>
+                {lyricsToDisplay}
+            </div>
         );
-    });
+    }
 
-    return (
-        <div className={styles.lyricsSection}>
-            {lyricsToDisplay}
-        </div>
-    );
 }
 
-export default lyrics;
+
+export default Lyrics;
