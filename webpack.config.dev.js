@@ -6,10 +6,11 @@ const DotenvWebpackPlugin = require('dotenv-webpack');
 
 
 module.exports = {
-    entry: {
-        main: [
-            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000', './src/index.js'
-        ]},
+    // entry: {
+        // main: [
+            // 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000', './src/index.js'
+        // ]},
+    entry: './src/index.js',
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'dist'),

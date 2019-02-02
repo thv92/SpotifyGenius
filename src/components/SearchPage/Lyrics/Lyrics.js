@@ -5,17 +5,20 @@ import Lyric from './Lyric/Lyric';
 
 class Lyrics extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
+
         if (nextProps.lyrics.length !== this.props.lyrics.length) {
             return true;
         } else {
+            let changed = false;
             this.props.lyrics.forEach((lyric, index) => {
                 const nextLyric = nextProps.lyrics[index];
                 if (nextLyric !== lyric) {
-                    return true;
+                    changed = true;
+                    return;
                 }
             });
+            return changed;
         }
-        return false;
     }
     
     render() {

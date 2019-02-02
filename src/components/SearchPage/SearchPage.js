@@ -5,6 +5,7 @@ import SearchCards from './SearchCards/SearchCards';
 import Lyrics from './Lyrics/Lyrics';
 import Backdrop from '../Backdrop/Backdrop';
 import Login from '../Login/Login';
+import NoLyrics from '../NoLyrics/NoLyrics';
 
 class SearchPage extends React.Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class SearchPage extends React.Component {
             searchTerm: "",
             songData: null,
             lyricsData: null,
-            loginRequired: false
+            loginRequired: false,
+            showNoLyrics: false
         };
         this.onUserInput = this.onUserInput.bind(this);
         this.getSongData = this.getSongData.bind(this);
@@ -73,16 +75,28 @@ class SearchPage extends React.Component {
         }))
         .then(response => response.json())
         .then(json => {
-            this.setState(() => {
-                return {
-                    lyricsData: json.lyrics
-                };
-            });
+            console.log(json);
+            if (json.lyrics) {
+                this.setState(() => {
+                    return {
+                        lyricsData: json.lyrics,
+                        showNoLyrics: false
+                    };
+                });
+            } else if (json.message && json.status) {
+                this.setState(() => {
+                    return {
+                        showNoLyrics: true
+                    };
+                });
+            } else {
+                throw new Error('Nothing done for lyrics');
+            }
         })
         .catch(err => {
             this.setState(() => {
                 return {
-                    lyricsData: null
+                    showNoLyrics: true
                 };
             });
         })
@@ -120,8 +134,10 @@ class SearchPage extends React.Component {
         if (songData) {
             songsToDisplay = <SearchCards songs={songData} onClick={this.onSearchCardClicked} />;
         }
-        if (lyricsData && lyricsData.length !== 0) {
-            lyricsToDisplay = <Lyrics lyrics={lyricsData}/>
+        if (!this.state.showNoLyrics && lyricsData && lyricsData.length !== 0) {
+            lyricsToDisplay = <Lyrics lyrics={lyricsData}/>;
+        } else if (this.state.showNoLyrics) {
+            lyricsToDisplay = <NoLyrics />;
         }
 
         return (
