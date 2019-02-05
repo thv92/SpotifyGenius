@@ -23,14 +23,17 @@
 }
 
 .titleContainer h1 {
-    font-size: 1.5em;
+    font-size: 1em;
+    width: 100%;
+    margin: auto auto;
 }
 
 .searchButtonContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-bottom: 1.5em;
-    min-height: 5%;
+    min-height: 4em;
 }
 
 .searchButton {
@@ -57,7 +60,7 @@
 .searchBarContainer {
     display: flex;
     justify-content: center;
-    min-height: 8%;
+    min-height: 4em;
 }
 
 .searchBar {
@@ -110,6 +113,38 @@
     justify-content: center;
     align-items: center;
     flex: 1;
+}
+
+/*======Media Queries=======*/
+@media(min-width: 300px) {
+    .titleContainer h1 {
+        font-size: .5em;
+    }
+}
+
+@media(min-width: 500px) {
+    .titleContainer h1 {
+        font-size: .7em;
+    }
+}
+
+@media(min-width: 700px) {
+    .titleContainer h1 {
+        font-size: 1em;
+    }
+}
+
+@media(min-width: 900px) {
+    .titleContainer h1 {
+        font-size: 1.3em;
+
+    }
+}
+
+@media(min-width: 1100px) {
+    .titleContainer h1 {
+        font-size: 1.8em;
+    }
 }
 
 @media(min-width: 1300px) {
