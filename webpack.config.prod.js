@@ -90,7 +90,8 @@ module.exports = env => {
             }),
             new CaseSensitivePathsPlugin(),
             new webpack.DefinePlugin({
-                'process.env.API_URL': JSON.stringify(env.API_URL)
+                'process.env.API_URL': JSON.stringify(env.API_URL),
+                'process.env.STATE' : JSON.stringify(env.STATE)
               })
         ]
     };
