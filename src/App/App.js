@@ -1,24 +1,25 @@
 import React from 'react';
 import SearchPage from '../components/SearchPage/SearchPage';
-import Login from '../components/Login/Login';
-import Backdrop from '../components/Backdrop/Backdrop';
 import styles from './App.css';
-
-
+import cookie from 'react-cookies';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            login: false
-        };
+
+        let token = null;
+        let cookieState = cookie.load(process.env.STATE);
+        if (cookieState) {
+            token = cookieState;
+            // cookie.remove(process.env.STATE)
+        }
+        this.state = { token };
     }
 
-    // { !this.state.login ? <Backdrop><Login /></Backdrop> : null }
     render() {
         return (
             <main>
-                <SearchPage />
+                <SearchPage {...this.state}/>
             </main>
         );
     }
