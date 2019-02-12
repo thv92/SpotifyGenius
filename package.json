@@ -12,7 +12,7 @@
     "buildDevWatch": "rm -rf ./dist && webpack --watch --mode development --config webpack.config.dev.js",
     "startServerWDS": "webpack-dev-server --config webpack.config.dev.js",
     "startServerDev": "nodemon ./src/server/server.dev.js",
-    "build": "rm -rf ./dist && webpack --env.API_URL=$API_URL --mode production --config webpack.config.prod.js",
+    "build": "rm -rf ./dist && webpack --env.API_URL=$API_URL --env.STATE=$STATE --mode production --config webpack.config.prod.js",
     "startServer": "node ./src/server/server.prod.js",
     "start": "yarn build && yarn startServer"
   },
