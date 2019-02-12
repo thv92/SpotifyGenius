@@ -31,11 +31,10 @@ app.use(express.static(path.join(__dirname, '../../dist')))
     }));
 
 
-
-
 app.get('*', (req, res, next) => {
     const filename = path.resolve(compiler.outputPath, 'index.html');
     console.log(filename);
+    console.log(req.cookies[process.env.STATE]);
     compiler.inputFileSystem.readFile(filename, (err, result) => {
         if (err) return next(err);
         res.set('content-type', 'text/html');

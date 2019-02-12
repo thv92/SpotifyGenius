@@ -14,6 +14,7 @@
     "startServerDev": "nodemon ./src/server/server.dev.js",
     "build": "rm -rf ./dist && webpack --env.API_URL=$API_URL --env.STATE=$STATE --mode production --config webpack.config.prod.js",
     "startServer": "node ./src/server/server.prod.js",
+    "startProdServerWatch": "nodemon ./src/server/server.prod.js",
     "start": "yarn build && yarn startServer"
   },
   "dependencies": {

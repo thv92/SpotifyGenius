@@ -24,7 +24,6 @@ app.get('*', (req, res, next) => {
     compiler.inputFileSystem.readFile(filename, (err, result) => {
         if (err) return next(err);
         res.set('content-type', 'text/html');
-        res.cookie(process.env.STATE, req.cookies[process.env.STATE]);
         res.send(result);
         res.end();
     });
