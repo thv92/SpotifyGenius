@@ -36,6 +36,7 @@
     "postcss-preset-env": "^6.5.0",
     "query-string": "^6.2.0",
     "react": "^16.7.0",
+    "react-cookies": "^0.1.0",
     "react-dom": "^16.7.0",
     "react-svg-loader": "^2.1.0",
     "style-loader": "^0.23.1",
