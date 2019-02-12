@@ -88,8 +88,6 @@ class SearchPage extends React.Component {
         }))
         .then(response => response.json())
         .then(json => {
-            console.log('LYRICS ACQUIRED: ');
-            console.log(json);
             if (json.lyrics.length > 0) {
                 this.setState(() => {
                     return {
