@@ -29,7 +29,6 @@ class SearchCards extends React.Component {
         return changed;
     }
 
-
     render() {
         //props => songs, onClick
         const songCards = this.props.songs.map((song) => {

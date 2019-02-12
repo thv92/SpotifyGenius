@@ -16,5 +16,6 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
+    width: 6px;
     background: #555;
 }

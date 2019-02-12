@@ -2,20 +2,20 @@ import React from 'react';
 import styles from './SearchPage.css';
 import QueryString from 'query-string';
 import SearchCards from './SearchCards/SearchCards';
-import Lyrics from './Lyrics/Lyrics';
+import LyricsSection from './LyricsSection/LyricsSection';
 import Backdrop from '../Backdrop/Backdrop';
 import Login from '../Login/Login';
-import NoLyrics from '../NoLyrics/NoLyrics';
+// import NoLyrics from '../NoLyrics/NoLyrics';
 
 class SearchPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchTerm: "",
+            searchTerm: '',
             songData: null,
-            lyricsData: null,
+            lyricsData: [],
             loginRequired: false,
-            showNoLyrics: false
+            showNoLyrics: false,
         };
         this.onUserInput = this.onUserInput.bind(this);
         this.getSongData = this.getSongData.bind(this);
@@ -23,7 +23,6 @@ class SearchPage extends React.Component {
         this.onEnterPressed = this.onEnterPressed.bind(this);
         this.onSearchButtonClicked = this.onSearchButtonClicked.bind(this);
         this.onSearchCardClicked = this.onSearchCardClicked.bind(this);
-        this.onLoginClicked = this.onLoginClicked.bind(this);
     }
 
     onUserInput(e) {
@@ -36,36 +35,50 @@ class SearchPage extends React.Component {
     }
 
     getSongData() {
-        fetch('/api/search/song?' + QueryString.stringify({
-            q: this.state.searchTerm
-        }))
-        .then(response => {
-            return response.json();
-        })
-        .then(json => {
-            if (json.results) {
+        if (this.state.searchTerm && this.state.searchTerm.trim().length > 0)  {
+            if (!this.props.token) {
                 this.setState(() => {
                     return {
-                        songData: json.results
-                    }
+                        loginRequired: true
+                    };
                 });
-            } else {
-                if (json.error && json.status === 401) {
+            }
+            fetch('/api/search/song?' + QueryString.stringify({
+                q: this.state.searchTerm,
+            }), {
+                method: 'GET',
+                headers: {
+                    'Authorization' : 'Bearer ' + this.props.token,
+                }
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(json => {
+                if (json.results) {
                     this.setState(() => {
                         return {
-                            loginRequired: true
-                        };
+                            songData: json.results
+                        }
                     });
+                } else {
+                    if (json.error && json.status === 401) {
+                        this.setState(() => {
+                            return {
+                                loginRequired: true
+                            };
+                        });
+                    }
                 }
-            }
-        })
-        .catch((err) => {
-            this.setState(() => {
-                return {
-                    songData: null
-                };
+            })
+            .catch(() => {
+                this.setState(() => {
+                    return {
+                        songData: null
+                    };
+                });
             });
-        });
+        }
     }
 
     getLyrics(name, artist) {
@@ -75,15 +88,16 @@ class SearchPage extends React.Component {
         }))
         .then(response => response.json())
         .then(json => {
+            console.log('LYRICS ACQUIRED: ');
             console.log(json);
-            if (json.lyrics) {
+            if (json.lyrics.length > 0) {
                 this.setState(() => {
                     return {
                         lyricsData: json.lyrics,
                         showNoLyrics: false
                     };
                 });
-            } else if (json.message && json.status) {
+            } else if (json.message && json.status || json.lyrics === 0) {
                 this.setState(() => {
                     return {
                         showNoLyrics: true
@@ -93,21 +107,13 @@ class SearchPage extends React.Component {
                 throw new Error('Nothing done for lyrics');
             }
         })
-        .catch(err => {
+        .catch(() => {
             this.setState(() => {
                 return {
                     showNoLyrics: true
                 };
             });
         })
-    }
-
-    onLoginClicked() {
-        this.setState(() => {
-            return {
-                loginRequired: false
-            };
-        });
     }
 
     onEnterPressed(e) {
@@ -130,14 +136,8 @@ class SearchPage extends React.Component {
         const songData = this.state.songData;
         const lyricsData = this.state.lyricsData;
         let songsToDisplay = null;
-        let lyricsToDisplay = null;
         if (songData) {
-            songsToDisplay = <SearchCards songs={songData} onClick={this.onSearchCardClicked} />;
-        }
-        if (!this.state.showNoLyrics && lyricsData && lyricsData.length !== 0) {
-            lyricsToDisplay = <Lyrics lyrics={lyricsData}/>;
-        } else if (this.state.showNoLyrics) {
-            lyricsToDisplay = <NoLyrics />;
+            songsToDisplay = <SearchCards songs={songData} onClick={this.onSearchCardClicked}/>;
         }
 
         return (
@@ -147,7 +147,7 @@ class SearchPage extends React.Component {
                         <h1>Spotify Genius</h1>
                     </div>
                     
-                    { this.state.loginRequired ? <Backdrop><Login onClick={this.onLoginClicked}/></Backdrop> :
+                    { this.state.loginRequired ? <Backdrop><Login/></Backdrop> :
                     (
                     <React.Fragment>
                         <div className={styles.searchBarContainer}>
@@ -161,7 +161,7 @@ class SearchPage extends React.Component {
                     )}
                 </div>
                 <div className={styles.right}>
-                    {lyricsToDisplay}
+                    <LyricsSection lyrics={lyricsData} showNoLyrics={this.state.showNoLyrics}/>
                 </div>
             </div>
         );

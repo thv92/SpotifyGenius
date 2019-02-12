@@ -3,7 +3,7 @@
     cursor: pointer;
     transition: all ease-out .3s;
     opacity: .8;
-    animation: slide-up 0.4s ease;
+    animation: slide-up .4s ease;
 }
 
 .container:hover {
@@ -14,7 +14,6 @@
     display: flex;
     max-width: 45%;
     justify-content: center;
-    animation: slide-up 0.4s ease;
 }
 
 .textContainer {
@@ -23,17 +22,15 @@
     justify-content: center;
     padding-left: 10px;
     color: #f8f4f3;
-    animation: slide-up 0.4s ease;
 }
 
-li:not(:first-child) {
+.container:not(:first-child) {
     border-top: 1px solid #f8f4f3;
 }
 
 .active {
     opacity: 1;
 }
-
 
 @keyframes slide-up {
     0% {

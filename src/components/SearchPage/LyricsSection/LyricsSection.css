@@ -1,0 +1,38 @@
+.lyricsContainer {
+    width: 60%;
+}
+
+.navigationSection {
+    height: 3em;
+    box-shadow: 10px 0 10px -10px rgba(0,0,0,.21);
+}
+
+.navList {
+    display: flex;
+    margin: 0 0;
+    height: inherit;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.navItem {
+    display: flex;
+    list-style-type: none;
+    color: #f8f4f3;
+    height: inherit;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    opacity: .6;
+    background-color: #4c4345;
+    transition: opacity ease-out .3s;
+    cursor: pointer;
+}
+
+.navItem:hover {
+    opacity: 1;
+}
+
+.activeNavItem {
+    opacity: 1;
+}

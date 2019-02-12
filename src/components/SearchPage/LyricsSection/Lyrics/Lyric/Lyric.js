@@ -4,14 +4,16 @@ import styles from './Lyric.css';
 
 const lyric = (props) => {
     //props: lyric => String
-    const formattedLyric = props.lyric.split('\n').map((line) => {
+    const formattedLyric = props.lyricObj.lyric.split('\n').map((line) => {
         return <span key={uniqueId()}>{line}<br/></span>;
     });
 
     return (
-        <div className={styles.lyricContainer}>
-            <p className={styles.lyric}>{formattedLyric}</p>
-        </div>
+        <React.Fragment>
+            <div className={styles.lyricContainer}>
+                <p className={styles.lyric}>{formattedLyric}</p>
+            </div>
+        </React.Fragment>
     );
 };
 
