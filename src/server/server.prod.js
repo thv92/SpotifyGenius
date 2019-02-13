@@ -17,16 +17,25 @@ function log(req, res, next) {
     next();
 }
 
+function relayRequestHeaders(proxyReq, req) {
+    console.log('PROXY REQ');
+    console.log(proxyReq.headers);
+  }
+  
+  function relayResponseHeaders(proxyRes, req, res) {
+    console.log('PROXY RES');
+    console.log(proxyRes.headers);
+  }
 app
-.use(cors({
-    credentials: true
-}))
+.use(cors())
 .use('/api', proxyMiddleware('/api', { 
     target: process.env.API_URL,
     pathRewrite: {'^/api': ''},
     logLevel: 'info',
-    secure: true,
+    secure: false,
     changeOrigin: true,
+    onProxyReq: relayRequestHeaders,
+    onProxyRes: relayResponseHeaders
 }))
 .use(log).use(express.static(path.join(__dirname, '../../dist')));
 
