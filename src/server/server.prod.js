@@ -28,15 +28,6 @@ function relayRequestHeaders(proxyReq, req) {
   }
 app
 .use(cors())
-.use('/api', proxyMiddleware('/api', { 
-    target: process.env.API_URL,
-    pathRewrite: {'^/api': ''},
-    logLevel: 'info',
-    secure: false,
-    changeOrigin: true,
-    onProxyReq: relayRequestHeaders,
-    onProxyRes: relayResponseHeaders
-}))
 .use(log).use(express.static(path.join(__dirname, '../../dist')));
 
 app.get('*', (req, res, next) => {
