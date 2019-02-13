@@ -9,15 +9,26 @@ const config = require('../../webpack.config.prod.js')(process.env);
 const app = express();
 const compiler = webpack(config);
 
-app.use(express.static(path.join(__dirname, '../../dist')))
-   .use(cors())
-   .use('/api', proxyMiddleware('/api', { 
-        target: process.env.API_URL,
-        pathRewrite: {'^/api': ''},
-        logLevel: 'info',
-        secure: false,
-        changeOrigin: true,
-}));
+function log(req, res, next) {
+    console.log('Incoming request: ');
+    console.log(req.headers);
+    console.log('Incoming response: ');
+    console.log(res.headers);
+    next();
+}
+
+app
+.use(cors({
+    credentials: true
+}))
+.use('/api', proxyMiddleware('/api', { 
+    target: process.env.API_URL,
+    pathRewrite: {'^/api': ''},
+    logLevel: 'info',
+    secure: true,
+    changeOrigin: true,
+}))
+.use(log).use(express.static(path.join(__dirname, '../../dist')));
 
 app.get('*', (req, res, next) => {
     const filename = path.resolve(compiler.outputPath, 'index.html');
