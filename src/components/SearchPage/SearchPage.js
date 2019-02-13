@@ -43,7 +43,7 @@ class SearchPage extends React.Component {
                     };
                 });
             }
-            fetch('/api/search/song?' + QueryString.stringify({
+            fetch(process.env.API_URL + '/search/song?' + QueryString.stringify({
                 q: this.state.searchTerm,
             }), {
                 method: 'GET',
@@ -62,7 +62,7 @@ class SearchPage extends React.Component {
                         }
                     });
                 } else {
-                    if (json.error && json.status === 401) {
+                    if (json.error || json.status >= 400) {
                         this.setState(() => {
                             return {
                                 loginRequired: true
@@ -82,7 +82,7 @@ class SearchPage extends React.Component {
     }
 
     getLyrics(name, artist) {
-        fetch('/api/search/lyric?' + QueryString.stringify({
+        fetch(process.env.API_URL + '/search/lyric?' + QueryString.stringify({
             name,
             artist
         }))

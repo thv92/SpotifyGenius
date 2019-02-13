@@ -1,19 +1,13 @@
 import React from 'react';
 import SearchPage from '../components/SearchPage/SearchPage';
 import styles from './App.css';
-import cookie from 'react-cookies';
+import QueryString from 'query-string';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-
-        let token = null;
-        let cookieState = cookie.load(process.env.STATE);
-        if (cookieState) {
-            token = cookieState;
-            cookie.remove(process.env.STATE)
-        }
-        this.state = { token };
+        let parsedUrl = QueryString.parse(window.location.search);
+        this.state = { token: parsedUrl.t };
     }
 
     render() {
