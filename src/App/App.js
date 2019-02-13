@@ -11,7 +11,7 @@ class App extends React.Component {
         let cookieState = cookie.load(process.env.STATE);
         if (cookieState) {
             token = cookieState;
-            // cookie.remove(process.env.STATE)
+            cookie.remove(process.env.STATE)
         }
         this.state = { token };
     }
