@@ -5,7 +5,7 @@ An app created with React served by Express that gets lyrics for a song upon use
 Deployed on heroku: https://spotify-genius.herokuapp.com/
 
 
-![Site](https://gyazo.com/c45f38900cdac44ac41bf22b13f0cfc8.gif)
+![Site](https://gyazo.com/444c55fc7934618d9a96f8a41b7fc2cb.gif)
 
 ## Setup
 
@@ -19,7 +19,7 @@ yarn buildDev && yarn startServerWDS
 
 ### Production:
 ```
-yarn build && yarn start
+yarn start
 ```
 
 ### Prerequisites
